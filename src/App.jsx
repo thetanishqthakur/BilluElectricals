@@ -541,7 +541,7 @@ export default function App() {
             </div>
           </div>
           <div className="border-t border-slate-700/30 pt-6 text-center text-slate-500 text-sm">
-            © 2025 Billu Electricals, Bhuntar, Himachal Pradesh. All rights reserved. Made with ⚡ in the Mountains.
+            © 2026 Billu Electricals, Bhuntar, Himachal Pradesh. All rights reserved. Made by Tanishq Thakur (HunteR)
           </div>
         </div>
       </footer>
