@@ -40,6 +40,11 @@ const whyUs = [
 
 const brands = ["Havells", "Kirloskar", "Crompton", "Luminous", "V-Guard", "Anchor", "Siemens", "Bosch"];
 
+// ── APNA NUMBER YAHAN DAALO ────────────────────────────────────────
+const PHONE = "919816039937"; // Country code + number, no + or spaces
+const PHONE_DISPLAY = "+91 98160 39937";
+// ───────────────────────────────────────────────────────────────────
+
 const navItems = ["home", "products", "services", "about", "contact"];
 
 const orbitIcons = [
@@ -76,8 +81,17 @@ export default function App() {
     setTimeout(() => setToast(false), 3000);
   };
 
+  const handleCall = () => { window.location.href = `tel:+${PHONE}`; };
+  const handleWhatsApp = () => {
+    window.open(
+      `https://wa.me/${PHONE}?text=Namaste%20Billu%20bhai%2C%20mujhe%20electrical%20service%20ke%20baare%20mein%20jaankari%20chahiye.`,
+      "_blank"
+    );
+  };
+
   return (
     <div className="font-rajdhani bg-[#0a0e1a] text-slate-200 min-h-screen overflow-x-hidden">
+
       {/* ── ANIMATED BACKGROUND BOLTS ─────────────────────────────── */}
       {[...Array(6)].map((_, i) => (
         <div
@@ -88,9 +102,7 @@ export default function App() {
             animationDuration: `${4 + i * 1.2}s`,
             animationDelay: `${i * 0.9}s`,
           }}
-        >
-          ⚡
-        </div>
+        >⚡</div>
       ))}
 
       {/* ══════════════════════════════════════════════════════════════
@@ -98,11 +110,9 @@ export default function App() {
       ══════════════════════════════════════════════════════════════ */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0e1a]/90 backdrop-blur-xl border-b border-amber-500/20">
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-[70px]">
+
           {/* Logo */}
-          <button
-            onClick={() => scrollTo("home")}
-            className="flex items-center gap-3 bg-transparent border-none cursor-pointer"
-          >
+          <button onClick={() => scrollTo("home")} className="flex items-center gap-3 bg-transparent border-none cursor-pointer">
             <span className="text-3xl animate-zap">⚡</span>
             <div className="text-left">
               <div className="font-bebas text-2xl text-amber-500 tracking-[3px] leading-none">
@@ -116,7 +126,7 @@ export default function App() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
+            {navItems.map(item => (
               <button
                 key={item}
                 className={`nav-link ${activeNav === item ? "active" : ""}`}
@@ -129,10 +139,7 @@ export default function App() {
 
           {/* CTA + Hamburger */}
           <div className="flex items-center gap-3">
-            <button
-              className="cta-btn hidden sm:block text-base px-5 py-2"
-              onClick={() => scrollTo("contact")}
-            >
+            <button className="cta-btn hidden sm:block text-base px-5 py-2" onClick={handleCall}>
               📞 Call Now
             </button>
             <button
@@ -147,7 +154,7 @@ export default function App() {
         {/* Mobile Menu */}
         {menuOpen && (
           <div className="md:hidden bg-[#0a0e1a] border-t border-amber-500/20 px-6 py-4">
-            {navItems.map((item) => (
+            {navItems.map(item => (
               <div key={item} className="border-b border-slate-700/30 py-3">
                 <button
                   className={`nav-link text-lg ${activeNav === item ? "active" : ""}`}
@@ -177,6 +184,7 @@ export default function App() {
 
         <div className="max-w-7xl mx-auto w-full relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
             {/* Left */}
             <div className="animate-fadeInUp">
               {/* Badge */}
@@ -188,10 +196,7 @@ export default function App() {
               </div>
 
               {/* Heading */}
-              <h1
-                className="font-bebas leading-[0.9] tracking-wide mb-6"
-                style={{ fontSize: "clamp(3.5rem, 9vw, 7rem)" }}
-              >
+              <h1 className="font-bebas leading-[0.9] tracking-wide mb-6" style={{ fontSize: "clamp(3.5rem, 9vw, 7rem)" }}>
                 <span className="glowing-text">BILLU</span>
                 <br />
                 <span className="text-slate-200">ELEC</span>
@@ -200,41 +205,23 @@ export default function App() {
 
               <p className="text-slate-400 text-xl leading-relaxed mb-8 max-w-xl font-medium">
                 Kullu Valley ka{" "}
-                <span className="text-amber-500 font-bold">
-                  sabse bharosemand
-                </span>{" "}
-                electrical shop. Generator se lekar Aata Chakki tak — sale bhi,
-                repair bhi.{" "}
-                <span className="text-emerald-400 font-bold">
-                  25+ saalon ka tajurbaa.
-                </span>
+                <span className="text-amber-500 font-bold">sabse bharosemand</span>{" "}
+                electrical shop. Generator se lekar Aata Chakki tak — sale bhi, repair bhi.{" "}
+                <span className="text-emerald-400 font-bold">25+ saalon ka tajurbaa.</span>
               </p>
 
               <div className="flex flex-wrap gap-4 mb-10">
-                <button
-                  className="cta-btn"
-                  onClick={() => scrollTo("products")}
-                >
+                <button className="cta-btn" onClick={() => scrollTo("products")}>
                   🛒 Products Dekho
                 </button>
-                <button
-                  className="outline-btn"
-                  onClick={() => scrollTo("services")}
-                >
+                <button className="outline-btn" onClick={() => scrollTo("services")}>
                   🔧 Repair Service
                 </button>
               </div>
 
               <div className="flex flex-wrap gap-6">
-                {[
-                  ["⚡", "Same Day Repair"],
-                  ["🚚", "Home Delivery"],
-                  ["✅", "ISI Certified"],
-                ].map(([icon, text]) => (
-                  <div
-                    key={text}
-                    className="flex items-center gap-2 text-slate-500 text-sm font-semibold"
-                  >
+                {[["⚡", "Same Day Repair"], ["🚚", "Home Delivery"], ["✅", "ISI Certified"]].map(([icon, text]) => (
+                  <div key={text} className="flex items-center gap-2 text-slate-500 text-sm font-semibold">
                     <span>{icon}</span>
                     <span>{text}</span>
                   </div>
@@ -247,20 +234,11 @@ export default function App() {
               <div
                 className="animate-float relative flex items-center justify-center rounded-full border-2 border-amber-500/20"
                 style={{
-                  width: 320,
-                  height: 320,
-                  background:
-                    "radial-gradient(circle, rgba(245,158,11,0.15) 0%, transparent 70%)",
+                  width: 320, height: 320,
+                  background: "radial-gradient(circle, rgba(245,158,11,0.15) 0%, transparent 70%)",
                 }}
               >
-                <span
-                  className="text-[8rem]"
-                  style={{
-                    filter: "drop-shadow(0 0 30px rgba(245,158,11,0.8))",
-                  }}
-                >
-                  ⚡
-                </span>
+                <span className="text-[8rem]" style={{ filter: "drop-shadow(0 0 30px rgba(245,158,11,0.8))" }}>⚡</span>
 
                 {orbitIcons.map(({ icon, angle }) => {
                   const rad = (angle * Math.PI) / 180;
@@ -289,10 +267,10 @@ export default function App() {
       ══════════════════════════════════════════════════════════════ */}
       <section className="py-16 px-6 bg-amber-500/[0.03] border-y border-amber-500/10">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-5">
-          <CounterCard end={25} suffix="+" label="Years Experience" />
-          <CounterCard end={5000} suffix="+" label="Happy Customers" />
-          <CounterCard end={50} suffix="+" label="Brands Available" />
-          <CounterCard end={99} suffix="%" label="Repair Success Rate" />
+          <CounterCard end={25}   suffix="+" label="Years Experience"    />
+          <CounterCard end={5000} suffix="+" label="Happy Customers"     />
+          <CounterCard end={50}   suffix="+" label="Brands Available"    />
+          <CounterCard end={99}   suffix="%" label="Repair Success Rate" />
         </div>
       </section>
 
@@ -320,33 +298,22 @@ export default function App() {
                 onMouseLeave={() => setHoveredCard(null)}
               >
                 {/* Tag */}
-                <span
-                  className={`absolute top-4 right-4 text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border font-rajdhani ${p.tagColor}`}
-                >
+                <span className={`absolute top-4 right-4 text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border font-rajdhani ${p.tagColor}`}>
                   {p.tag}
                 </span>
 
                 {/* Icon */}
                 <div
                   className={`text-5xl mb-4 transition-all duration-300 ${hoveredCard === p.id ? "animate-float" : ""}`}
-                  style={{
-                    filter:
-                      hoveredCard === p.id
-                        ? "drop-shadow(0 0 12px rgba(245,158,11,0.8))"
-                        : "none",
-                  }}
+                  style={{ filter: hoveredCard === p.id ? "drop-shadow(0 0 12px rgba(245,158,11,0.8))" : "none" }}
                 >
                   {p.icon}
                 </div>
 
-                <h3
-                  className={`font-teko text-2xl tracking-wide mb-2 transition-colors duration-300 ${hoveredCard === p.id ? "text-amber-400" : "text-slate-200"}`}
-                >
+                <h3 className={`font-teko text-2xl tracking-wide mb-2 transition-colors duration-300 ${hoveredCard === p.id ? "text-amber-400" : "text-slate-200"}`}>
                   {p.name}
                 </h3>
-                <p className="text-slate-500 text-sm leading-relaxed">
-                  {p.desc}
-                </p>
+                <p className="text-slate-500 text-sm leading-relaxed">{p.desc}</p>
 
                 {hoveredCard === p.id && (
                   <div className="mt-4 pt-4 border-t border-amber-500/20 text-amber-400 text-xs font-bold tracking-widest uppercase font-rajdhani">
@@ -365,10 +332,7 @@ export default function App() {
       <section
         id="services"
         className="py-24 px-6 border-t border-slate-700/20"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, rgba(245,158,11,0.04) 0%, transparent 70%)",
-        }}
+        style={{ background: "radial-gradient(ellipse at center, rgba(245,158,11,0.04) 0%, transparent 70%)" }}
       >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -385,12 +349,8 @@ export default function App() {
             {services.map((s, i) => (
               <div key={i} className="service-card">
                 <div className="text-4xl mb-4">{s.icon}</div>
-                <h3 className="font-teko text-2xl tracking-wide text-amber-400 mb-2">
-                  {s.title}
-                </h3>
-                <p className="text-slate-500 text-sm leading-relaxed">
-                  {s.desc}
-                </p>
+                <h3 className="font-teko text-2xl tracking-wide text-amber-400 mb-2">{s.title}</h3>
+                <p className="text-slate-500 text-sm leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -400,9 +360,7 @@ export default function App() {
             {whyUs.map(({ icon, title, sub }) => (
               <div key={title}>
                 <div className="text-4xl mb-2">{icon}</div>
-                <div className="font-teko text-xl text-amber-400 tracking-wide">
-                  {title}
-                </div>
+                <div className="font-teko text-xl text-amber-400 tracking-wide">{title}</div>
                 <div className="text-slate-500 text-xs mt-1">{sub}</div>
               </div>
             ))}
@@ -415,6 +373,7 @@ export default function App() {
       ══════════════════════════════════════════════════════════════ */}
       <section id="about" className="py-24 px-6 border-t border-slate-700/20">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+
           {/* Text */}
           <div>
             <p className="section-label">🏪 Hamare Baare Mein</p>
@@ -422,23 +381,18 @@ export default function App() {
               KULLU VALLEY KI <span className="glowing-text">SHAAN</span>
             </h2>
             <p className="text-slate-400 leading-relaxed text-lg mb-4">
-              <strong className="text-amber-500">Billu Electricals</strong> —
-              Sainik Chowk, Bhuntar mein pichhle{" "}
-              <strong className="text-slate-200">25 saalon</strong> se Kullu
-              Valley ki electrical zarooratein poori karta aa raha hai.
-              Generator se lekar Aata Chakki tak, motors se lekar LED lights tak
-              — sab kuch ek hi jagah.
+              <strong className="text-amber-500">Billu Electricals</strong> — Sainik Chowk, Bhuntar mein pichhle{" "}
+              <strong className="text-slate-200">25 saalon</strong> se Kullu Valley ki electrical zarooratein poori karta aa raha hai.
+              Generator se lekar Aata Chakki tak, motors se lekar LED lights tak — sab kuch ek hi jagah.
             </p>
             <p className="text-slate-400 leading-relaxed text-lg mb-8">
-              Hamare paas{" "}
-              <strong className="text-slate-200">ISI-certified products</strong>
-              , trained technicians, aur best-in-valley repair service hai.
-              Manali, Kullu, Kasol — sab jagah se log yahan aate hain.
+              Hamare paas <strong className="text-slate-200">ISI-certified products</strong>, trained technicians, aur best-in-valley
+              repair service hai. Manali, Kullu, Kasol — sab jagah se log yahan aate hain.
             </p>
 
             {/* Brands */}
             <div className="flex flex-wrap gap-2">
-              {brands.map((b) => (
+              {brands.map(b => (
                 <span
                   key={b}
                   className="bg-amber-500/10 border border-amber-500/25 text-amber-400 text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-lg font-rajdhani"
@@ -452,39 +406,14 @@ export default function App() {
           {/* Badge Grid */}
           <div className="grid grid-cols-2 gap-5">
             {[
-              {
-                bg: "bg-amber-400/10  border-amber-400/30",
-                icon: "🏆",
-                title: "Best Shop Award",
-                sub: "Kullu District",
-              },
-              {
-                bg: "bg-emerald-400/10 border-emerald-400/30",
-                icon: "✅",
-                title: "Certified",
-                sub: "All Products",
-              },
-              {
-                bg: "bg-blue-400/10   border-blue-400/30",
-                icon: "🚚",
-                title: "Home Delivery",
-                sub: "Bhuntar & nearby",
-              },
-              {
-                bg: "bg-violet-400/10 border-violet-400/30",
-                icon: "📞",
-                title: "24/7 Support",
-                sub: "Emergency calls",
-              },
+              { bg: "bg-amber-400/10  border-amber-400/30",   icon: "🏆", title: "Best Shop Award",  sub: "Kullu District 2023"  },
+              { bg: "bg-emerald-400/10 border-emerald-400/30", icon: "✅", title: "ISI Certified",    sub: "All Products"         },
+              { bg: "bg-blue-400/10   border-blue-400/30",    icon: "🚚", title: "Free Delivery",    sub: "Bhuntar & nearby"     },
+              { bg: "bg-violet-400/10 border-violet-400/30",  icon: "📞", title: "24/7 Support",     sub: "Emergency calls"      },
             ].map(({ bg, icon, title, sub }) => (
-              <div
-                key={title}
-                className={`rounded-2xl border p-6 text-center ${bg}`}
-              >
+              <div key={title} className={`rounded-2xl border p-6 text-center ${bg}`}>
                 <div className="text-4xl mb-2">{icon}</div>
-                <div className="font-teko text-xl text-slate-200 tracking-wide">
-                  {title}
-                </div>
+                <div className="font-teko text-xl text-slate-200 tracking-wide">{title}</div>
                 <div className="text-slate-500 text-xs mt-1">{sub}</div>
               </div>
             ))}
@@ -508,15 +437,10 @@ export default function App() {
             {testimonials.map((t, i) => (
               <div key={i} className="testimonial-card">
                 <StarRating count={t.stars} />
-                <p className="text-slate-400 mt-4 leading-relaxed text-base italic">
-                  "{t.text}"
-                </p>
+                <p className="text-slate-400 mt-4 leading-relaxed text-base italic">"{t.text}"</p>
                 <div className="mt-6 flex items-center gap-3">
-                  <div
-                    className="w-11 h-11 rounded-full flex items-center justify-center font-bebas text-xl text-[#0a0e1a]"
-                    style={{
-                      background: "linear-gradient(135deg, #f59e0b, #d97706)",
-                    }}
+                  <div className="w-11 h-11 rounded-full flex items-center justify-center font-bebas text-xl text-[#0a0e1a]"
+                    style={{ background: "linear-gradient(135deg, #f59e0b, #d97706)" }}
                   >
                     {t.name[0]}
                   </div>
@@ -544,56 +468,30 @@ export default function App() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
             {/* Info Cards */}
             <div className="flex flex-col gap-4">
               {[
-                {
-                  icon: "📍",
-                  label: "Address",
-                  value:
-                    "Sainik Chowk, Bhuntar\nKullu, Himachal Pradesh — 175125",
-                },
-                {
-                  icon: "📞",
-                  label: "Call / WhatsApp",
-                  value: "+91 98160 39937",
-                },
-                {
-                  icon: "🕐",
-                  label: "Timings",
-                  value:
-                    "Mon–Sat: 8:00 AM – 8:00 PM\nSunday: 9:00 AM – 6:00 PM",
-                },
-                {
-                  icon: "📧",
-                  label: "Email",
-                  value: "billuelectricals@gmail.com",
-                },
+                { icon: "📍", label: "Address",          value: "Sainik Chowk, Bhuntar\nKullu, Himachal Pradesh — 175125" },
+                { icon: "📞", label: "Call / WhatsApp",  value: PHONE_DISPLAY },
+                { icon: "🕐", label: "Timings",          value: "Mon–Sat: 8:00 AM – 8:00 PM\nSunday: 9:00 AM – 6:00 PM" },
+                { icon: "📧", label: "Email",            value: "billuelectricals@gmail.com" },
               ].map(({ icon, label, value }) => (
                 <div key={label} className="contact-info-card">
                   <span className="text-3xl">{icon}</span>
                   <div>
-                    <div className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-1 font-rajdhani">
-                      {label}
-                    </div>
-                    <div className="text-slate-400 leading-relaxed whitespace-pre-line">
-                      {value}
-                    </div>
+                    <div className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-1 font-rajdhani">{label}</div>
+                    <div className="text-slate-400 leading-relaxed whitespace-pre-line">{value}</div>
                   </div>
                 </div>
               ))}
 
               <div className="flex gap-3 mt-2">
-                <button
-                  className="cta-btn flex-1 text-center"
-                  onClick={showToast}
-                >
-                  📞 Call Karen
-                </button>
+                <button className="cta-btn flex-1 text-center" onClick={handleCall}>📞 Call Karen</button>
                 <button
                   className="flex-1 rounded-full font-teko font-semibold text-xl uppercase tracking-widest text-white border-none cursor-pointer py-3 px-4 transition-all duration-300 hover:scale-105 hover:shadow-lg"
                   style={{ background: "#25D366", letterSpacing: "2px" }}
-                  onClick={showToast}
+                  onClick={handleWhatsApp}
                 >
                   💬 WhatsApp
                 </button>
@@ -604,30 +502,17 @@ export default function App() {
             <div className="relative rounded-2xl border border-slate-700/30 bg-slate-900/60 overflow-hidden min-h-[420px] flex flex-col items-center justify-center">
               <div className="absolute inset-0 grid-bg opacity-50" />
               <div className="relative z-10 text-center p-10">
-                <div className="text-7xl mb-4 animate-float inline-block">
-                  📍
-                </div>
-                <h3 className="font-bebas text-3xl text-amber-500 tracking-[3px] mb-1">
-                  SAINIK CHOWK
-                </h3>
-                <p className="text-slate-400 mb-6">
-                  Bhuntar, Kullu — HP 175125
-                </p>
+                <div className="text-7xl mb-4 animate-float inline-block">📍</div>
+                <h3 className="font-bebas text-3xl text-amber-500 tracking-[3px] mb-1">SAINIK CHOWK</h3>
+                <p className="text-slate-400 mb-6">Bhuntar, Kullu — HP 175125</p>
                 <div className="bg-amber-500/10 border border-amber-500/25 rounded-xl p-4 mb-6 text-slate-400 text-sm leading-relaxed">
-                  🏔️ Beas River ke paas
-                  <br />
-                  ✈️ Bhuntar Airport se 2 min
-                  <br />
+                  🏔️ Beas River ke paas<br />
+                  ✈️ Bhuntar Airport se 2 min<br />
                   🚌 Bus Stand ke bilkul nazdeek
                 </div>
                 <button
                   className="cta-btn"
-                  onClick={() =>
-                    window.open(
-                      "https://maps.app.goo.gl/UYfQiTnHsJP9EMuz9?g_st=ac",
-                      "_blank",
-                    )
-                  }
+                  onClick={() => window.open("https://maps.google.com/?q=Sainik+Chowk+Bhuntar+Kullu+Himachal+Pradesh", "_blank")}
                 >
                   🗺️ Google Maps Kholo
                 </button>
@@ -644,28 +529,19 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-wrap justify-between items-center gap-8 mb-8">
             <div>
-              <div className="font-bebas text-3xl text-amber-500 tracking-[3px]">
-                ⚡ BILLU ELECTRICALS
-              </div>
-              <div className="text-slate-500 text-sm mt-1">
-                Kullu Valley ka Sabse Trusted Electrical Shop
-              </div>
+              <div className="font-bebas text-3xl text-amber-500 tracking-[3px]">⚡ BILLU ELECTRICALS</div>
+              <div className="text-slate-500 text-sm mt-1">Kullu Valley ka Sabse Trusted Electrical Shop</div>
             </div>
             <div className="flex flex-wrap gap-6">
-              {navItems.map((item) => (
-                <button
-                  key={item}
-                  className="nav-link"
-                  onClick={() => scrollTo(item)}
-                >
+              {navItems.map(item => (
+                <button key={item} className="nav-link" onClick={() => scrollTo(item)}>
                   {item}
                 </button>
               ))}
             </div>
           </div>
           <div className="border-t border-slate-700/30 pt-6 text-center text-slate-500 text-sm">
-            © 2025 Billu Electricals, Bhuntar, Himachal Pradesh. All rights
-            reserved. Made by Tanishq Thakur(HunteR).
+            © 2025 Billu Electricals, Bhuntar, Himachal Pradesh. All rights reserved. Made with ⚡ in the Mountains.
           </div>
         </div>
       </footer>
@@ -673,7 +549,7 @@ export default function App() {
       {/* ── WhatsApp FAB ──────────────────────────────────────────── */}
       <a
         className="whatsapp-fab"
-        href="https://wa.me/919816039937"
+        href={`https://wa.me/${PHONE}?text=Namaste%20Billu%20bhai%2C%20mujhe%20electrical%20service%20ke%20baare%20mein%20jaankari%20chahiye.`}
         target="_blank"
         rel="noreferrer"
         title="WhatsApp par message karo"
@@ -684,7 +560,7 @@ export default function App() {
       {/* ── Toast ─────────────────────────────────────────────────── */}
       {toast && (
         <div className="fixed bottom-28 right-8 z-50 bg-emerald-500 text-white px-5 py-3 rounded-xl font-bold text-sm font-rajdhani shadow-xl">
-          ✅ Call karen: +91 98160 39937
+          ✅ Call karen: {PHONE_DISPLAY}
         </div>
       )}
     </div>
