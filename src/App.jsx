@@ -512,7 +512,7 @@ export default function App() {
                 </div>
                 <button
                   className="cta-btn"
-                  onClick={() => window.open("https://maps.google.com/?q=Sainik+Chowk+Bhuntar+Kullu+Himachal+Pradesh", "_blank")}
+                  onClick={() => window.open("https://maps.app.goo.gl/UYfQiTnHsJP9EMuz9?g_st=ac", "_blank")}
                 >
                   🗺️ Google Maps Kholo
                 </button>
