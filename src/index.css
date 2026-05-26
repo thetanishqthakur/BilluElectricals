@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0e1a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #f59e0b;
+    border-radius: 3px;
+  }
+
+  body {
+    font-family: 'Rajdhani', sans-serif;
+    background: #0a0e1a;
+    color: #e2e8f0;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .font-bebas { font-family: 'Bebas Neue', sans-serif; }
+  .font-teko  { font-family: 'Teko', sans-serif; }
+  .font-rajdhani { font-family: 'Rajdhani', sans-serif; }
+
+  .glowing-text {
+    background: linear-gradient(90deg, #f59e0b, #fbbf24, #f59e0b);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+  }
+
+  .product-card {
+    @apply relative overflow-hidden rounded-2xl border border-slate-700/40 bg-slate-900/80 p-7 cursor-pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .product-card::before {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(135deg, transparent, rgba(245,158,11,0.05));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .product-card:hover::before { opacity: 1; }
+  .product-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(245,158,11,0.6);
+    box-shadow: 0 20px 60px rgba(245,158,11,0.15), 0 0 0 1px rgba(245,158,11,0.2);
+  }
+
+  .service-card {
+    @apply rounded-2xl border border-slate-700/30 bg-slate-900/60 p-7;
+    transition: all 0.3s ease;
+  }
+  .service-card:hover {
+    border-color: rgba(245,158,11,0.5);
+    background: rgba(245,158,11,0.05);
+    transform: translateY(-4px);
+  }
+
+  .testimonial-card {
+    @apply rounded-2xl border border-slate-700/40 bg-slate-900/80 p-8;
+    transition: all 0.3s ease;
+  }
+  .testimonial-card:hover {
+    border-color: rgba(245,158,11,0.4);
+    transform: translateY(-4px);
+  }
+
+  .cta-btn {
+    @apply font-teko font-semibold uppercase tracking-widest cursor-pointer;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #0a0e1a;
+    border: none;
+    padding: 0.85rem 2.2rem;
+    border-radius: 50px;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(245,158,11,0.4);
+  }
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(245,158,11,0.6);
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  }
+
+  .outline-btn {
+    @apply font-teko font-semibold uppercase tracking-widest cursor-pointer;
+    background: transparent;
+    border: 2px solid rgba(245,158,11,0.5);
+    color: #f59e0b;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    transition: all 0.3s;
+  }
+  .outline-btn:hover {
+    background: rgba(245,158,11,0.1);
+    border-color: #f59e0b;
+  }
+
+  .nav-link {
+    @apply bg-transparent border-none text-slate-400 font-rajdhani font-bold uppercase tracking-widest cursor-pointer py-2 relative;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+  }
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-0.5 bg-amber-500;
+    width: 0;
+    transition: width 0.3s;
+  }
+  .nav-link:hover,
+  .nav-link.active { color: #f59e0b; }
+  .nav-link:hover::after,
+  .nav-link.active::after { width: 100%; }
+
+  .section-label {
+    @apply font-rajdhani font-bold uppercase tracking-[3px] text-amber-500 text-sm mb-3;
+  }
+
+  .section-heading {
+    @apply font-bebas tracking-widest leading-none;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+  }
+
+  .contact-info-card {
+    @apply flex gap-4 items-start rounded-2xl border border-slate-700/30 bg-slate-900/60 p-5;
+    transition: border-color 0.3s;
+  }
+  .contact-info-card:hover {
+    border-color: rgba(245,158,11,0.5);
+  }
+
+  .hero-bolt {
+    @apply absolute pointer-events-none;
+    font-size: 2rem;
+    animation: bolt linear infinite;
+    opacity: 0.12;
+  }
+
+  .whatsapp-fab {
+    @apply fixed bottom-8 right-8 z-50 w-16 h-16 rounded-full flex items-center justify-center text-3xl cursor-pointer no-underline;
+    background: #25D366;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+    transition: all 0.3s;
+  }
+  .whatsapp-fab::before {
+    content: '';
+    @apply absolute w-full h-full rounded-full;
+    background: #25D366;
+    animation: pulseRing 2s ease-out infinite;
+  }
+  .whatsapp-fab:hover {
+    transform: scale(1.15);
+    box-shadow: 0 8px 30px rgba(37,211,102,0.7);
+  }
+}
+
+@layer utilities {
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(245,158,11,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,158,11,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: gridMove 10s linear infinite;
+  }
+}
